@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock title %}
+{% block hero %}
+<div class="hero-container">
+  <h3>Welcome to <strong>Fitgym</strong></h3>
+  <h1>Worlds Largest Body Building Community</h1>
+  <h2>
+    We are team of talented trainers we develop body from Zero to Hero
+  </h2>
+  <a href="#about" class="btn-get-started scrollto">Shop Now</a>
+</div>
+{% endblock hero %}
+
+{% block body %} 
+{% load static %}
+    <!-- ======= About Section ======= -->
+    <section id="about" class="about">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>About</h2>
+          <h3>Learn More <span>About Us</span></h3>
+          <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.</p>
+        </div>
+
+        <div class="row content">
+          <div class="col-lg-6">
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+              magna aliqua.
+            </p>
+            <ul>
+              <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat</li>
+              <li><i class="ri-check-double-line"></i> Duis aute irure dolor in reprehenderit in voluptate velit</li>
+              <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat</li>
+            </ul>
+          </div>
+          <div class="col-lg-6 pt-4 pt-lg-0">
+            <p>
+              Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+              velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+              culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+            <a href="#" class="btn-learn-more">Learn More</a>
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End About Section -->
+
+    
+<!-- ======= Portfolio Section ======= -->
+<section id="portfolio" class="portfolio">
+  <div class="container">
+    <div class="section-title">
+      <h2>Plans</h2>
+      <h3>Check our <span>Packages</span></h3>
+    </div>
+
+    {% for product, range, nSlides in allProds %}
+    {% if request.user.is_authenticated %}
+        <h3 class="p_heading">
+      {{product.0.package_category}} Package <a href="/order">(Book Now <i class="fa-regular fa-square-check"></i>)</a>
+    </h3>
+    {% else %}
+    <h3 class="p_heading">
+      {{product.0.package_category}} Package <a href="/auth/login/">(Book Now <i class="fa-regular fa-square-check"></i>)</a>
+    </h3>
+    {% endif %}
+
+
+    <div class="container p_container">
+      <div class="row p_row">
+
+        {% for i in product %}
+        <div class="col-md-4 mt-3 product">
+        {% comment %} 
+          <img src="/media/{{i.image}}" class="card-img-top" alt="not found" height="200px" width="150px" />
+          <div class="card-body">
+            <h5 class="card-title mt-2" id="namepr{{i.id}}">{{i.product_name}}</h5>
+            <p class="card-text">{{i.desc|slice:"0:53"}}...</p>
+            <h6 class="card-title mb-3">
+              Price:<span id="pricepr{{i.id}}">{{i.price}}</span>
+            </h6>
+            <span id="divpr{{i.id}}" class="divpr">
+              <button id="pr{{i.id}}" class="btn btn-danger cart btn-sm mt-0">
+                AddToCart <i class="fa-solid fa-cart-shopping"></i>
+              </button>
+            </span>
+
+            <a href="/media/{{i.image}}">
+              <button class="btn btn-dark btn-sm cart"><i class="fa-solid fa-eye"></i></button></a
+            >
+          </div> {% endcomment %}
+          <div class="product-card mb-5">
+            <div class="badge">Hot</div>
+            <div class="product-tumb">
+              <img src="/media/{{i.image}}" alt="">
+            </div>
+            <div class="product-details">
+              <span class="product-catagory">Access To</span>
+              <h4><a href="">{{i.package_name}}</a></h4>
+              <p>{{i.desc}}...</p>
+              <div class="product-bottom-details">
+                <div class="product-price"><small>discount</small>{{i.price}}</div>
+                <div class="product-links">
+                  <a href=""><i class="fa fa-heart"></i></a>
+                  <a href=""><i class="fa fa-shopping-cart"></i></a>
+                  <a href="/media/{{i.image}}">
+                    <i class="fa-solid fa-eye"></i></a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+<!-- End Portfolio Section -->
+
+{% endblock body %}

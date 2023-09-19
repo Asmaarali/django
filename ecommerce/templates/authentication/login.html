@@ -1,0 +1,35 @@
+{% extends './baseauth.html' %} 
+{% block form %}
+<div class="background">
+  <div class="shape"></div>
+  <div class="shape"></div>
+</div>
+<form action="/auth/login/" method="post">
+  {% csrf_token %}
+  <h3>Login Here</h3>
+
+  <label for="username">Username</label>
+  <input
+    type="text"
+    placeholder="Email or Phone"
+    id="email"
+    name="email"
+    required
+  />
+
+  <label for="password">Password</label>
+  <input
+    type="password"
+    placeholder="Password"
+    id="pass1"
+    name="pass1"
+    required
+  />
+
+  <button>Log In</button>
+  <div class="social">
+    <div class="go"><i class="fab fa-google"></i> Google</div>
+    <div class="fb"><i class="fab fa-facebook"></i> Facebook</div>
+  </div>
+</form>
+{% endblock form %}

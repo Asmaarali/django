@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block headerlinks %}
+{% load static %}
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+{% endblock headerlinks %}
+{% block title %}Contact{% endblock title %}
+{% block hero %}
+<div class="hero-container">
+<h1>Contact</h1>
+</div>
+{% endblock hero %}
+{% block body %}
+
+<div class="container contact-form">
+    <div class="contact-image">
+        <img src="https://image.ibb.co/kUagtU/rocket_contact.png" alt="rocket_contact"/>
+    </div>
+    <form action="/contact" method="post">
+        {% csrf_token %}
+        <h3 class="contactinfo"><strong>Drop Us a Message</strong></h3>
+       <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <input type="text" name="name" class="form-control" placeholder="Your Name *" value="" required />
+                </div>
+                <div class="form-group">
+                    <input type="email" name="email" class="form-control" placeholder="Your Email *" value="" required/>
+                </div>
+                <div class="form-group">
+                    <input type="number" name="phone" class="form-control" placeholder="Your Phone Number *" value="" required/>
+                </div>
+                <div class="form-group">
+                    <input type="submit" name="btnSubmit" class="btnContact" value="Send Message" />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <textarea name="txtMsg" class="form-control" placeholder="How can we help?? *" style="width: 100%; height: 150px;" required></textarea>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+{% endblock body %}
